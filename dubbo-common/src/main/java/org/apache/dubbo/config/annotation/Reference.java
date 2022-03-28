@@ -78,7 +78,7 @@ public @interface Reference {
     /**
      * Check if service provider is available during boot up, default value is true
      */
-    boolean check() default true;
+    boolean check() default false;
 
     /**
      * Whether eager initialize the reference bean when all properties are set, default value is false
@@ -164,7 +164,7 @@ public @interface Reference {
      * <p>
      * see Constants#DEFAULT_RETRIES
      */
-    int retries() default 2;
+    int retries() default 0;
 
     /**
      * Load balance strategy, legal values include: random, roundrobin, leastactive
@@ -201,7 +201,7 @@ public @interface Reference {
     /**
      * Timeout value for service invocation, default value is 0
      */
-    int timeout() default 0;
+    int timeout() default 6000;
 
     /**
      * Specify cache implementation for service invocation, legal values include: lru, threadlocal, jcache

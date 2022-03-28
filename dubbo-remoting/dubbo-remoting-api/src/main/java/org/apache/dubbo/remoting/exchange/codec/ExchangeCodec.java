@@ -57,6 +57,7 @@ public class ExchangeCodec extends TelnetCodec {
     protected static final byte FLAG_TWOWAY = (byte) 0x40;
     protected static final byte FLAG_EVENT = (byte) 0x20;
     protected static final int SERIALIZATION_MASK = 0x1f;
+    protected static final long ALERT_BODY_LENGTH = 2097152L;
     private static final Logger logger = LoggerFactory.getLogger(ExchangeCodec.class);
 
     public Short getMagicCode() {
@@ -293,6 +294,9 @@ public class ExchangeCodec extends TelnetCodec {
             bos.close();
 
             int len = bos.writtenBytes();
+            if ((long)len >= ALERT_BODY_LENGTH) {
+                logger.error("dubbo response body is larger than 2M");
+            }
             checkPayload(channel, len);
             Bytes.int2bytes(len, header, 12);
             // write

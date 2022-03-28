@@ -32,12 +32,12 @@ public abstract class AbstractMethodConfig extends AbstractConfig {
     /**
      * The timeout for remote invocation in milliseconds
      */
-    protected Integer timeout;
+    protected Integer timeout = 6000;
 
     /**
      * The retry times
      */
-    protected Integer retries;
+    protected Integer retries = 0;
 
     /**
      * max concurrent invocations

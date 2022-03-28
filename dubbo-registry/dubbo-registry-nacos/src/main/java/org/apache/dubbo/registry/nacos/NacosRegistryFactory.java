@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.registry.nacos;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.registry.Registry;
 import org.apache.dubbo.registry.RegistryFactory;
@@ -32,7 +33,18 @@ public class NacosRegistryFactory extends AbstractRegistryFactory {
 
     @Override
     protected String createRegistryCacheKey(URL url) {
-        return url.toFullString();
+        String namespace = url.getParameter("namespace");
+        url = URL.valueOf(url.toServiceStringWithoutResolving());
+        if (StringUtils.isNotEmpty(namespace)) {
+            url = url.addParameter("namespace", namespace);
+        }
+
+        URL cacheUrl = url;
+        if (StringUtils.isNotEmpty(url.getParameter("timestamp"))) {
+            cacheUrl = URL.valueOf(url.toServiceStringWithoutResolving());
+            cacheUrl = cacheUrl.removeParameter("timestamp");
+        }
+        return cacheUrl.toFullString();
     }
 
     @Override

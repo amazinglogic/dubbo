@@ -89,7 +89,7 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
     protected String router;
 
     public Boolean isCheck() {
-        return check;
+        return false;
     }
 
     public void setCheck(Boolean check) {

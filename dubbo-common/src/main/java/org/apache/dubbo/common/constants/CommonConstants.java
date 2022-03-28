@@ -319,7 +319,7 @@ public interface CommonConstants {
 
     String FORKS_KEY = "forks";
 
-    int DEFAULT_RETRIES = 2;
+    int DEFAULT_RETRIES = 0;
 
     int DEFAULT_FAILBACK_TIMES = 3;
 
@@ -343,5 +343,7 @@ public interface CommonConstants {
      * @since 2.7.8
      */
     String DEFAULT_SERVICE_NAME_MAPPING_PROPERTIES_PATH = "META-INF/dubbo/service-name-mapping.properties";
+
+    String API_VERSION = "apiVersion";
 
 }
